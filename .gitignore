@@ -1,0 +1,8 @@
+/atm
+/atm.sqlite3
+/src/*.o
+/autom4te.cache
+/configure
+/config.log
+/config.status
+/Makefile

@@ -1,0 +1,30 @@
+CXX=@CC@
+LD=@CC@
+CXXFLAGS=@CFLAGS@
+LDFLAGS=@LDFLAGS@
+LIBS=@LIBS@
+
+SRC     := src
+
+HEADERS := $(SRC)/database.h \
+		   $(SRC)/helper.h \
+		   $(SRC)/menu.h
+
+SOURCES := $(SRC)/database.c \
+		   $(SRC)/helper.c \
+		   $(SRC)/menu.c \
+		   $(SRC)/main.c
+
+OBJECTS := $(patsubst $(SRC)/%.c, $(SRC)/%.o, $(SOURCES))
+
+all: atm
+
+atm: $(OBJECTS) $(HEADERS)
+	$(LD) -o atm $^ $(LDFLAGS) $(LIBS)
+
+$(SRC)/%.o: $(SRC)/%.c
+	$(LD) -I$(SRC) -c $< -o $@
+
+.PHONY: clean
+clean:
+	rm -f atm $(SRC)/*.o
